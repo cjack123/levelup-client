@@ -6,3 +6,30 @@ export const getGames = () => {
     })
         .then(response => response.json())
 }
+
+export const createGame = (game) => {
+    return fetch("http://localhost:8000/games", {
+        method: "Post",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(game)
+    })
+        .then(res => res.json())
+}
+
+
+export const getGameTypes = () => {
+    return fetch("http://localhost:8000/gametypes", {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
+//cmd + n creates new files
+//under open edited right click one of new files, then select for compare
+//then click the next file and click compare with selected
