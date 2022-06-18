@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
 import { getGames } from "./GameManger.js"
 
 export const GameList = (props) => {
@@ -7,8 +8,17 @@ export const GameList = (props) => {
     useEffect(() => {
         getGames().then(data => setGames(data))
     }, [])
-    
+
+    const history = useHistory()
+
     return (
+        <>
+        <button className="btn btn-2 btn-sep icon-create"
+            onClick={() => {
+                history.push("/games/new")
+            }}>Register New Game
+        </button>
+
         <article className="games">
             {
                 games.map(game => {
@@ -20,5 +30,6 @@ export const GameList = (props) => {
                 })
             }
         </article>
+        </>
     )
 }
